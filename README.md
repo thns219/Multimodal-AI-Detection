@@ -1,4 +1,5 @@
 I - Abstract
+
 Sự bùng nổ của các mô hình sinh nội dung dựa trên trí tuệ nhân tạo đã làm gia tăng đáng kể số lượng dữ liệu giả mạo dưới dạng văn bản và hình ảnh. Điều này đặt ra yêu cầu cấp thiết về các phương pháp phát hiện nội dung do AI tạo ra với độ chính xác và khả năng mở rộng cao. Trong nghiên cứu này, chúng tôi đề xuất một hệ thống phát hiện đa phương thức (multimodal) nhằm phân loại nội dung AI và nội dung thực (human-generated). Hệ thống kết hợp các mô hình học sâu tiên tiến cho cả hai miền dữ liệu, bao gồm Transformer cho văn bản và Vision Transformer cho hình ảnh. Kết quả thực nghiệm cho thấy cách tiếp cận đa phương thức giúp cải thiện hiệu năng so với các phương pháp đơn lẻ, đồng thời tăng khả năng tổng quát hóa trên dữ liệu quy mô lớn.
 
 II - Kiến trúc hệ thống (System Architecture)
@@ -52,10 +53,19 @@ Confusion Matrix
 IV - Thực nghiệm và kết quả (Experiments & Results)
 Hệ thống được đánh giá trên tập dữ liệu gồm cả văn bản và hình ảnh với hai nhãn chính:
 
-AI / Fake
-Human / Real
+Real / Fake
+<img width="2100" height="1800" alt="vit_confusion_matrix" src="https://github.com/user-attachments/assets/fe30e158-afcb-43d5-b1d8-2f4854888485" />
+
+Human / AI
+<img width="2100" height="1800" alt="bert_confusion_matrix" src="https://github.com/user-attachments/assets/b2309b4b-2b4f-4761-b76c-8a30e6dc93d9" />
+
+<img width="2100" height="1800" alt="roberta_confusion_matrix" src="https://github.com/user-attachments/assets/44b1fc18-644b-4fe3-b24a-dd4500cbb6a7" />
 
 Kết quả cho thấy:
+
+<img width="2364" height="1291" alt="compare" src="https://github.com/user-attachments/assets/de126c86-f6f3-46e3-b576-64102195b78e" />
+
+<img width="1920" height="1080" alt="Screenshot (123)" src="https://github.com/user-attachments/assets/f9e1cc0f-cc99-4da0-a203-cc9bb5a2ac0c" />
 
 Các mô hình Transformer (BERT, RoBERTa) đạt hiệu quả cao trong phân loại văn bản
 Vision Transformer (ViT) hoạt động tốt trong phát hiện ảnh giả
