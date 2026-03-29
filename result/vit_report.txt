@@ -1,8 +1,10 @@
+=== VIT CLASSIFICATION REPORT ===
+
               precision    recall  f1-score   support
 
-        Real     0.6694    0.5650    0.6128      2000
-        Fake     0.3369    0.4420    0.3824      1000
+        REAL       0.67      0.56      0.61      2000
+        FAKE       0.34      0.44      0.38      1000
 
-    accuracy                         0.5240      3000
-   macro avg     0.5032    0.5035    0.4976      3000
-weighted avg     0.5586    0.5240    0.5360      3000
+    accuracy                           0.52      3000
+   macro avg       0.50      0.50      0.50      3000
+weighted avg       0.56      0.52      0.54      3000

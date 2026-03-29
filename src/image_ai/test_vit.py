@@ -67,6 +67,9 @@ label_map = {
 for label_name, label_id in label_map.items():
     folder = os.path.join(DATA_DIR, label_name)
 
+    if not os.path.exists(folder):
+        continue
+
     for file in os.listdir(folder):
         if file.lower().endswith((".jpg", ".jpeg", ".png")):
             image_paths.append(os.path.join(folder, file))
@@ -129,7 +132,7 @@ with torch.no_grad():
 # ===============================
 print("\n=== REPORT (ViT) ===\n")
 
-report_text = classification_report(labels_list, preds, target_names=["Real", "Fake"])
+report_text = classification_report(labels_list, preds, target_names=["REAL", "FAKE"])
 print(report_text)
 
 # ===============================
@@ -155,22 +158,26 @@ df_report.to_csv(csv_path, encoding="utf-8")
 print("Saved CSV:", csv_path)
 
 # ===============================
-# CONFUSION MATRIX (ĐẸP NHƯ ROBERTA)
+# CONFUSION MATRIX (BERT STYLE)
 # ===============================
 cm = confusion_matrix(labels_list, preds)
 
-labels_name = ["Real", "Fake"]
+labels_name = ["REAL", "FAKE"]
 cm_percent = cm.astype("float") / cm.sum(axis=1)[:, np.newaxis]
 
-plt.figure(figsize=(7, 6))
-plt.imshow(cm, interpolation="nearest", cmap="Blues")
+plt.figure(figsize=(8, 7))
 
-plt.title("Confusion Matrix - ViT (Real vs Fake)", fontsize=14)
-plt.colorbar()
+im = plt.imshow(cm, interpolation="nearest", cmap="Reds")
+
+plt.title("Confusion Matrix - ViT", fontsize=18, fontweight="bold", pad=15)
+
+cbar = plt.colorbar(im, fraction=0.046, pad=0.04)
+cbar.ax.tick_params(labelsize=12)
 
 tick_marks = np.arange(len(labels_name))
-plt.xticks(tick_marks, labels_name)
-plt.yticks(tick_marks, labels_name)
+
+plt.xticks(tick_marks, labels_name, fontsize=14)
+plt.yticks(tick_marks, labels_name, fontsize=14)
 
 threshold = cm.max() / 2
 
@@ -181,16 +188,19 @@ for i in range(cm.shape[0]):
             f"{cm[i, j]}\n({cm_percent[i, j]*100:.1f}%)",
             ha="center",
             va="center",
-            color="white" if cm[i, j] > threshold else "black",
-            fontsize=11
+            fontsize=14,
+            fontweight="bold",
+            color="white" if cm[i, j] > threshold else "black"
         )
 
-plt.ylabel("Actual", fontsize=12)
-plt.xlabel("Predicted", fontsize=12)
+plt.ylabel("Actual", fontsize=14)
+plt.xlabel("Predicted", fontsize=14)
+
+plt.grid(False)
 plt.tight_layout()
 
 img_path = os.path.join(RESULT_DIR, "vit_confusion_matrix.png")
-plt.savefig(img_path, dpi=300)
+plt.savefig(img_path, dpi=300, bbox_inches="tight")
 plt.close()
 
 print("Saved Image:", img_path)
