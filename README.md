@@ -54,7 +54,8 @@ IV - Thực nghiệm và kết quả (Experiments & Results)
 Hệ thống được đánh giá trên tập dữ liệu gồm cả văn bản và hình ảnh với hai nhãn chính:
 
 Real / Fake
-<img width="2100" height="1800" alt="vit_confusion_matrix" src="https://github.com/user-attachments/assets/fe30e158-afcb-43d5-b1d8-2f4854888485" />
+
+<img width="2365" height="2070" alt="image" src="https://github.com/user-attachments/assets/9679958e-4dcf-4151-899d-4353389e9c63" />
 
 Human / AI
 <img width="2100" height="1800" alt="bert_confusion_matrix" src="https://github.com/user-attachments/assets/b2309b4b-2b4f-4761-b76c-8a30e6dc93d9" />
